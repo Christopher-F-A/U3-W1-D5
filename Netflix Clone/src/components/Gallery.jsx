@@ -10,20 +10,20 @@ const Gallery = ({ title, searchQuery }) => {
   const fetchMovies = async () => {
     try {
       const response = await fetch(`http://www.omdbapi.com/?apikey=a5ac38ca&s=${searchQuery}`);
-
       if (response.ok) {
         const data = await response.json();
-        if (data.Search) {
-          setMovies(data.Search);
+        if (data.Response === "True") {
+          setMovies(data.Search.slice(0, 6));
+          setIsError(false);
+        } else {
+          setIsError(true);
         }
-        setIsLoading(false);
       } else {
         setIsError(true);
-        setIsLoading(false);
       }
     } catch (error) {
-      console.error(error);
       setIsError(true);
+    } finally {
       setIsLoading(false);
     }
   };
@@ -44,7 +44,7 @@ const Gallery = ({ title, searchQuery }) => {
 
       {isError && <Alert variant="danger">Errore nel caricamento dei film.</Alert>}
 
-      <Row xs={1} sm={2} lg={4} xl={6} className="mb-4">
+      <Row xs={2} sm={2} lg={4} xl={6} className="mb-4">
         {movies.map((movie) => (
           <MovieCard key={movie.imdbID} movie={movie} />
         ))}
