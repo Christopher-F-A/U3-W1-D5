@@ -1,6 +1,6 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
 import logo from "../assets/logo.png";
-
+import { Link } from "react-router-dom";
 const MyNavbar = () => {
   return (
     <Navbar expand="lg" variant="dark" style={{ backgroundColor: "#221f1f" }}>
@@ -13,11 +13,21 @@ const MyNavbar = () => {
 
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto fw-bold">
-            <Nav.Link href="#">Home</Nav.Link>
-            <Nav.Link href="#">TV Shows</Nav.Link>
-            <Nav.Link href="#">Movies</Nav.Link>
-            <Nav.Link href="#">Recently Added</Nav.Link>
-            <Nav.Link href="#">My List</Nav.Link>
+            <Link to="/" className="nav-link">
+              Home
+            </Link>
+            <Link to="/tv-shows" className="nav-link">
+              TV Shows
+            </Link>
+            <Link to="/Movies" className="nav-link">
+              Movies
+            </Link>
+            <Link to="/Recently-Added" className="nav-link">
+              Recently Added
+            </Link>
+            <Link to="/My-List" className="nav-link">
+              My List
+            </Link>
           </Nav>
 
           <div className="d-flex align-items-center">
